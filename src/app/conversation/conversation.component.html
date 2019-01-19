@@ -1,3 +1,15 @@
-<p>
-  {{friend | json}}
-</p>
+<div id="conversationContainer">
+  <img src="/assets/img/generic_avatar.png" class="avatarFrameOffline w-50" alt="">
+  <div class="d-block align-items-left">
+  </div>
+  <div class="d-flex align-items-top" id="topLogon">
+    {{user.name}} - {{user.status}}
+    <small>{{user.subnick}}</small>
+  </div>
+  <div class="d-flex w-auto mh-100 align-items-end">
+    <textarea class="form-control" name="chatArea" id="chatArea" cols="30" rows="10"></textarea>
+  </div>
+  <div class="d-flex w-auto align-items-end">
+    <input type="text" class="inputChat form-control">
+  </div>
+</div>
