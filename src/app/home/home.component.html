@@ -29,10 +29,10 @@
     </div>
   </div>
   <span><b>Amigos ({{friends.length}} / {{friends.length}})</b></span>
-  <div class="d-block m-b-5" *ngFor="let user of friends | search: query; let i = index;">
-      <a routerLink="/conversation/{{user.uid}}">
-        <img id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.
-        {{user.nick}} - {{user.subnick || user.status}} - <small>{{user.email}}</small>
-      </a>
-    </div>
+  <div class="d-block mb-5" *ngFor="let user of friends | search: query; let i = index;">
+    <a routerLink="/conversation/{{user.uid}}">
+      <img id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.
+      {{user.nick}} - {{user.subnick || user.status}} - <small>{{user.email}}</small>
+    </a>
+  </div>
 </div>
