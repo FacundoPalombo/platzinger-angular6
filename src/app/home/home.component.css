@@ -1,4 +1,4 @@
-#user_status {
+#userStatus {
   width: 20px;
 }
 
@@ -19,4 +19,22 @@
 
 #homeAvatarPicture {
   max-width: 100px;
+}
+
+.whiteContainerPadded {
+  padding: 15px;
+  background-color: #feffff;
+
+}
+
+.icon {
+  width: 30px;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.m-b-5 {
+  margin-bottom: 5px;
 }

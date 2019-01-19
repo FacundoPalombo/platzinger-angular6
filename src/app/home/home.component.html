@@ -19,14 +19,20 @@
     </div>
   </div>
 </div>
-
-<input type="text" placeholder="Buscar Amigos" [(ngModel)]="query"> <br>
-<span><b>Amigos</b></span>
-<ng-container *ngFor="let user of friends | search: query; let i = index;">
-  <div>
-    <a routerLink="/conversation/{{user.uid}}">
-      <img id="user_status" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.
-      {{user.nick}} - {{user.email}}
-    </a>
+<div class="whiteContainerPadded mt-15">
+  <div class="row">
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Buscar Amigos" [(ngModel)]="query"> <br>
+    </div>
+    <div class="col-md-auto">
+      <img src="/assets/img/logo_live_add.png" class="icon" alt="Add friend">
+    </div>
   </div>
-</ng-container>
+  <span><b>Amigos ({{friends.length}} / {{friends.length}})</b></span>
+  <div class="d-block m-b-5" *ngFor="let user of friends | search: query; let i = index;">
+      <a routerLink="/conversation/{{user.uid}}">
+        <img id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.
+        {{user.nick}} - {{user.subnick || user.status}} - <small>{{user.email}}</small>
+      </a>
+    </div>
+</div>
