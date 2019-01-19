@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.center {
+  text-align: center !important;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
