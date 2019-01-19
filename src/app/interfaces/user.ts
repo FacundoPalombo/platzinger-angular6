@@ -1,3 +1,9 @@
+/**
+ * @string status ##enum who uses 4 status: offline, online, busy, away.
+ *
+ */
+export type status = 'online' | 'offline' | 'away' | 'busy';
+
 export interface User {
     nick: string;
     subnick?: string;
@@ -5,4 +11,5 @@ export interface User {
     email: string;
     friend: boolean;
     uid: any;
+    status: status;
 }

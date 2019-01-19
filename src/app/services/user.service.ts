@@ -13,7 +13,8 @@ export class UserService {
       email: 'facu@facu.com',
       age: 22,
       friend: true,
-      uid: 1
+      uid: 1,
+      status: 'busy'
     };
     let eduardo: User = {
       nick: 'Eduardo',
@@ -21,7 +22,8 @@ export class UserService {
       email: 'eduard@gmail.com',
       age: 24,
       friend: false,
-      uid: 2
+      uid: 2,
+      status: 'away'
     };
     let jorge: User = {
       nick: 'Jorgito',
@@ -29,7 +31,8 @@ export class UserService {
       email: 'jor_gito@live.com',
       age: 16,
       friend: true,
-      uid: 3
+      uid: 3,
+      status: 'online'
     };
     let coco: User = {
       nick: 'Coco',
@@ -37,7 +40,8 @@ export class UserService {
       email: 'basilecoco89@msn.com',
       age: 28,
       friend: true,
-      uid: 4
+      uid: 4,
+      status: 'offline'
     };
     let hernan: User = {
       nick: 'Herni uwu',
@@ -45,7 +49,8 @@ export class UserService {
       email: 'herniwi@awadeuwu.com',
       age: 69,
       friend: false,
-      uid: 5
+      uid: 5,
+      status: 'online'
     };
     this.friends = [
       myUser,
