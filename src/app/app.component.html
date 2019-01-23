@@ -1,4 +1,4 @@
-<app-navigation *ngIf="router.url != '/login'"></app-navigation>
-<div class="generalContent">
+<app-navigation *ngIf="router.url != 'login'"></app-navigation>
+<div [ngClass]="{'generalContent': router.url != 'login'}">
   <router-outlet></router-outlet>
 </div>
