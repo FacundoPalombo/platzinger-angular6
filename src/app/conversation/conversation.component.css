@@ -19,54 +19,121 @@
 
 }*/
 
-.contPrinc{
-	padding: 15px;
+.contPrinc {
+  padding: 15px;
 }
-.margin-left{
-	margin-left: 0px;
+
+.margin-left {
+  margin-left: 0px;
 }
-.chatContainer{
-	width: 100%;
-	height: 350px;
+
+.chatContainer {
+  width: 100%;
+  height: 350px;
 }
-.bottomChat{
-	width: 100%;
-	bottom: 0px;
+
+.bottomChat {
+  width: 100%;
+  bottom: 0px;
 }
-#conversationContainer{
+
+#conversationContainer {
   background-image: url("/assets/img/msnbg.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
 
 }
+
 .homeAvatarPicture {
   max-width: 100px;
 }
+
 .marto100 {
-	margin-top: 100px;
+  margin-top: 100px;
 }
-.marle-25{
-	margin-left: 25px;
+
+.marle-25 {
+  margin-left: 25px;
 }
-.marto250{
+
+.marto250 {
   margin-top: 250px;
 }
-.areaChat{
-	height:100px;
+
+.areaChat {
+  height: 100px;
+}
+
+.emisor {
+  float: right;
+  max-width: 600px;
+}
+
+.receptor {
+  float: left;
+  max-width: 600px;
 }
 
 .exampleChat {
-	font-family: 'San-serif'
+  font-family: 'Arial';
+  margin: 0 auto;
+  display: inline-block;
 }
 
-.iconImage{
-	width: 30px;
-	margin-right: 10px;
+.iconImage {
+  width: 30px;
+  margin-right: 10px;
 }
 
 img .logoPers {
-	width: 65px;
+  width: 65px;
 }
-.icon{
-	margin-right:  10px;
+
+.icon {
+  margin-right: 10px;
+}
+
+/* Emisor */
+.speech-bubble-em {
+  position: relative;
+  background: #1ab14a;
+  border-radius: .4em;
+}
+
+.speech-bubble-em:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #1ab14a;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -5px;
+  margin-right: -10px;
+}
+
+/* Receptor */
+
+.speech-bubble-rec {
+  position: relative;
+  background: #a1a1a1;
+  border-radius: .4em;
+}
+
+.speech-bubble-rec::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: #a1a1a1;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -5px;
+  margin-left: -10px;
 }
