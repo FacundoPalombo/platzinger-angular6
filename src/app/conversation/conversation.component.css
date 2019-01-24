@@ -1,0 +1,139 @@
+/*
+.conversationContainer {
+  background-image: url("/assets/img/msnbg.jpg");
+  background-repeat: no-repeat;
+  position: fixed;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.transparencyGradient {
+  background: rgba(217, 217, 217, 1);
+  background: -moz-linear-gradient(top, rgba(217, 217, 217, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(217, 217, 217, 1)), color-stop(5%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+  background: -webkit-linear-gradient(top, rgba(217, 217, 217, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 100%);
+  background: -o-linear-gradient(top, rgba(217, 217, 217, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(217, 217, 217, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(to bottom, rgba(217, 217, 217, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9d9d9', endColorstr='#ffffff', GradientType=0);
+
+}*/
+
+.contPrinc {
+  padding: 15px;
+}
+
+.margin-left {
+  margin-left: 0px;
+}
+
+.chatContainer {
+  width: 100%;
+  height: 350px;
+}
+
+.bottomChat {
+  width: 100%;
+  bottom: 0px;
+}
+
+#conversationContainer {
+  background-image: url("/assets/img/msnbg.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+}
+
+.homeAvatarPicture {
+  max-width: 100px;
+}
+
+.marto100 {
+  margin-top: 100px;
+}
+
+.marle-25 {
+  margin-left: 25px;
+}
+
+.marto250 {
+  margin-top: 250px;
+}
+
+.areaChat {
+  height: 100px;
+}
+
+.emisor {
+  float: right;
+  max-width: 600px;
+}
+
+.receptor {
+  float: left;
+  max-width: 600px;
+}
+
+.exampleChat {
+  font-family: 'Arial';
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.iconImage {
+  width: 30px;
+  margin-right: 10px;
+}
+
+img .logoPers {
+  width: 65px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+/* Emisor */
+.speech-bubble-em {
+  position: relative;
+  background: #1ab14a;
+  border-radius: .4em;
+}
+
+.speech-bubble-em:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #1ab14a;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -5px;
+  margin-right: -10px;
+}
+
+/* Receptor */
+
+.speech-bubble-rec {
+  position: relative;
+  background: #a1a1a1;
+  border-radius: .4em;
+}
+
+.speech-bubble-rec::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: #a1a1a1;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -5px;
+  margin-left: -10px;
+}
