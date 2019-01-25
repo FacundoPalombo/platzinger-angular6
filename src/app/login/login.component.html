@@ -17,13 +17,18 @@
         </div>
         <div class="borderedContainer">
           <input [(ngModel)]="email" class="form-control mb-15" type="email" placeholder="Ingresar email" name="" id="" />
-          <input [(ngModel)]="password" class="form-control mb-15" type="password" placeholder="Ingresar contraseña" name="" id="" />
+          <input [(ngModel)]="password" class="form-control mb-15" type="password" placeholder="Ingresar contraseña"
+            name="" id="" />
           <input *ngIf="operation == 'register'" class="form-control mb-15" type="text" placeholder="Ingresar nick"
             name="" id="" />
         </div>
         <div class="center">
           <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary">Iniciar Sesión</a>
           <a (click)="register()" *ngIf="operation == 'register'" class="btn btn-primary">Registrarse</a>
+          <div (click)="loginWithFacebook()" class="fb-login-button" data-size="large" data-button-type="continue_with"
+            data-auto-logout-link="false" data-use-continue-as="false">
+
+          </div>
         </div>
       </div>
     </div>
