@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
   email: string = null;
   password: string = null;
   nick: string = null;
-  constructor(private authenticationService: AuthenticationService, private userService: UserService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,6 +26,7 @@ export class LoginComponent implements OnInit {
         (data) => {
           alert('Logeado correctamente');
           console.log(data);
+          this.router.navigate(['home']);
         }
       ).catch(
         (error) => {
