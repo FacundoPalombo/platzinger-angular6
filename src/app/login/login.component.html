@@ -25,10 +25,7 @@
         <div class="center">
           <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary">Iniciar Sesión</a>
           <a (click)="register()" *ngIf="operation == 'register'" class="btn btn-primary">Registrarse</a>
-          <div (click)="loginWithFacebook()" class="fb-login-button" data-size="large" data-button-type="continue_with"
-            data-auto-logout-link="false" data-use-continue-as="false">
-
-          </div>
+          <div class="fb-login-button" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
         </div>
       </div>
     </div>
