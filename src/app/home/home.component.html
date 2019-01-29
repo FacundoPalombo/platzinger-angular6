@@ -28,7 +28,7 @@
       <img src="/assets/img/logo_live_add.png" class="icon" alt="Add friend">
     </div>
   </div>
-  <span><b>Amigos ({{friends.length}} / {{friends.length}})</b></span>
+  <span *ngIf="friends"><b>Amigos ({{friends.length}} / {{friends.length}})</b></span>
   <div class="d-block mb-5" *ngFor="let user of friends | search: query; let i = index;">
     <a routerLink="/conversation/{{user.uid}}">
       <img id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.

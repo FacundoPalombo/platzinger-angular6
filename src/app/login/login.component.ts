@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   email: string = null;
   password: string = null;
   nick: string = null;
+  status = 'online';
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService,
               private router: Router) { }
@@ -50,7 +51,8 @@ export class LoginComponent implements OnInit {
           const user = {
             uid: data.user.uid,
             email: this.email,
-            nick: this.nick
+            nick: this.nick,
+            status: this.status
           };
           this.userService.createUser(user)
             .then(

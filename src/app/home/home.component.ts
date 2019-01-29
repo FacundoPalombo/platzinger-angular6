@@ -11,7 +11,9 @@ export class HomeComponent implements OnInit {
   friends: User[];
   query: string = '';
   constructor(private userService: UserService) {
-    this.friends = userService.getFriends();
+    this.userService.getUsers().valueChanges().subscribe(
+      (data: User[]) => { this.friends = data; },
+      (err) => { console.error(err); });
   }
 
   ngOnInit() {
