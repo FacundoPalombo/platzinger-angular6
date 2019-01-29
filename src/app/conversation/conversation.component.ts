@@ -16,10 +16,10 @@ export class ConversationComponent implements OnInit {
     private userService: UserService) {
     this.friendId = this.activatedRoute.snapshot.params['uid'];
     console.log(this.friendId);
-    this.friends = this.userService.getFriends();
+    /*this.friends = this.userService.getFriends();
     this.friend = this.friends.find((record) => {
       return record.uid == this.friendId;
-    });
+    });*/
     console.log(this.friend);
   }
   ngOnInit() {

@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -8,10 +9,11 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  operation: string = 'login';
+  operation = 'login';
   email: string = null;
   password: string = null;
-  constructor(private authenticationService: AuthenticationService) { }
+  nick: string = null;
+  constructor(private authenticationService: AuthenticationService, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -41,8 +43,21 @@ export class LoginComponent implements OnInit {
     this.authenticationService.registerWithEmail(this.email, this.password)
       .then(
         (data) => {
-          alert('Registrado correctamente');
-          console.log(data);
+          const user = {
+            uid: data.user.uid,
+            email: this.email,
+            nick: this.nick
+          };
+          this.userService.createUser(user)
+            .then(
+              (userData) => {
+                console.log(userData);
+                console.log(user);
+              })
+            .catch(
+              (err) => {
+              console.error(err);
+            });
         }
       ).catch(
         (error) => {

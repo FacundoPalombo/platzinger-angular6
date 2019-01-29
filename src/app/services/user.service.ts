@@ -1,66 +1,22 @@
+import { User } from './../interfaces/user';
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  friends: User[];
-  constructor() {
-    let myUser: User = {
-      nick: 'Facundo',
-      subnick: 'Hello world!',
-      email: 'facu@facu.com',
-      age: 22,
-      friend: true,
-      uid: 1,
-      status: 'busy'
-    };
-    let eduardo: User = {
-      nick: 'Eduardo',
-      subnick: 'Hola! Soy Eduardo!',
-      email: 'eduard@gmail.com',
-      age: 24,
-      friend: false,
-      uid: 2,
-      status: 'away'
-    };
-    let jorge: User = {
-      nick: 'Jorgito',
-      subnick: 'h3h3 xD',
-      email: 'jor_gito@live.com',
-      age: 16,
-      friend: true,
-      uid: 3,
-      status: 'online'
-    };
-    let coco: User = {
-      nick: 'Coco',
-      subnick: 'Estan todas buenas menos mi jermu',
-      email: 'basilecoco89@msn.com',
-      age: 28,
-      friend: true,
-      uid: 4,
-      status: 'offline'
-    };
-    let hernan: User = {
-      nick: 'Herni uwu',
-      subnick: 'xd',
-      email: 'herniwi@awadeuwu.com',
-      age: 69,
-      friend: false,
-      uid: 5,
-      status: 'online'
-    };
-    this.friends = [
-      myUser,
-      eduardo,
-      jorge,
-      coco,
-      hernan
-    ];
+  constructor(private angularFireDatabase: AngularFireDatabase) { }
+  getUsers() {
+    return this.angularFireDatabase.list('/users');
   }
-  getFriends() {
-    return this.friends;
+  getUserById(uid) {
+    return this.angularFireDatabase.object(`/users/${uid}`);
+  }
+  createUser(user) {
+    return this.angularFireDatabase.object(`/users/${user.uid}`).set(user);
+  }
+  editUser(user) {
+    return this.angularFireDatabase.object(`/users/${user.uid}`).set(user);
   }
 }
