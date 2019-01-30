@@ -13,6 +13,7 @@
             <span>Online</span>
             <br>
             <span>[Escriba un mensaje personal]</span>
+            <a (click)="logout()" class="btn pos-r"><i class="fas fa-sign-out-alt"></i> Desconectarse</a>
           </div>
         </div>
       </div>
@@ -29,9 +30,10 @@
     </div>
   </div>
   <span *ngIf="friends"><b>Amigos ({{friends.length}} / {{friends.length}})</b></span>
-  <div class="d-block mb-5" *ngFor="let user of friends | search: query; let i = index;">
+  <div class="d-block" *ngFor="let user of friends | search: query; let i = index;">
     <a routerLink="/conversation/{{user.uid}}">
-      <img id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}"> {{i}}.
+      <img *ngIf="user.status != undefined" id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}">
+      <img *ngIf="user.status == undefined" id="userStatus" src="../../assets/img/logo_live_offline.png" alt="Offline"> {{i}}.
       {{user.nick}} - {{user.subnick || user.status}} - <small>{{user.email}}</small>
     </a>
   </div>
