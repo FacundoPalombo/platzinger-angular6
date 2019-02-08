@@ -12,7 +12,7 @@
 
       </div>
       <div class="col">
-        <span><b>{{user.name}}</b></span>
+        <span><b>{{user.nick}}</b></span>
         <div class="container">
           <div class="chatContainer marto15">
             <div class="exampleChat receptor">
@@ -49,7 +49,8 @@
 
           </div>
           <div class="bottomChat">
-            <input type="area" class="form-control areaChat" placeholder="Escribe un mensaje" name="">
+            <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control areaChat" 
+            placeholder="Escribe un mensaje" cols="30" rows="10"></textarea>
 
             <div class="marto15">
 
