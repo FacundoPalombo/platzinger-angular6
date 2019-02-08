@@ -1,9 +1,9 @@
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { FirebaseStorage } from '@angular/fire';
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +14,10 @@ export class ProfileComponent implements OnInit {
   user: User;
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  picture: any;
   constructor(private userService: UserService,
     private authenticationService: AuthenticationService,
-    private firebaseStorage: FirebaseStorage) {
+    private firebaseStorage: AngularFireStorage) {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService.getUserById(status.uid).valueChanges().subscribe(
@@ -38,7 +39,25 @@ export class ProfileComponent implements OnInit {
   saveSettings() {
     if (this.croppedImage) {
       const currentPictureId = Date.now();
-      const pictures = this.firebaseStorage.ref();
+      const pictures =
+      this.firebaseStorage.ref(`pictures/${currentPictureId}.jpg`).putString(this.croppedImage, 'data_url')
+      .then((result) => {
+        this.picture = this.firebaseStorage.ref(`pictures/${currentPictureId}/.jpg`).getDownloadURL();
+        this.picture.subscribe((p) => {
+          this.userService.setAvatar(p, this.user.uid)
+          .then(() => {
+            alert('avatar subido correctamente');
+          })
+          .catch((err) => {
+            console.log('Error al subir la imagen');
+            console.error(err);
+          });
+        });
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     } else {
 
       this.userService.editUser(this.user)
