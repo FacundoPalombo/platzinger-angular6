@@ -12,5 +12,5 @@ export interface User {
     friend: boolean;
     uid: any;
     status: status;
-    avatar?: File;
+    avatar?: string;
 }
