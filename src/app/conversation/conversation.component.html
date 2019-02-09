@@ -15,7 +15,12 @@
         <span><b>{{friend.nick}}</b></span>
         <div class="container">
           <div class="chatContainer marto15">
-            <div class="exampleChat receptor">
+              <div class="messageGroup" *ngFor="let m of conversation">
+                  <b>{{m.sender}}</b> dice: <br>
+                  <span>{{m.text}}</span>
+                </div>
+            <!--
+              <div class="exampleChat receptor">
               <span><b>Receptor:</b></span>
               <p class="marle-25 speech-bubble-rec">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
                 natus quo ab maiores expedita fuga minima dolorem quam, ea quia eveniet sit, soluta ipsa alias adipisci
@@ -45,7 +50,7 @@
                 praesentium accusantium ab, impedit placeat facere, exercitationem fugiat dolorum animi molestiae,
                 eveniet fugit illum rem. Quia velit impedit quo commodi dolor.</p>
             </div>
-
+            -->
 
           </div>
           <div class="bottomChat">

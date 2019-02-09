@@ -17,6 +17,7 @@ export class ConversationComponent implements OnInit {
   user: User;
   textMessage: string;
   conversation_id: string;
+  conversation: any[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -62,7 +63,10 @@ export class ConversationComponent implements OnInit {
   getConversation() {
     this.conversationService.getConversation(this.conversation_id).valueChanges()
     .subscribe(
-      (data) => { console.log(data); },
+      (data) => {
+        console.log(data);
+        this.conversation = data;
+      },
       (error) => { console.error(error); }
     );
   }
