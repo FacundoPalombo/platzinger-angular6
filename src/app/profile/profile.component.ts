@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   picture: any;
   constructor(private userService: UserService,
     private authenticationService: AuthenticationService,
-    private firebaseStorage: AngularFireStorage) {
+    private angularFireStorage: AngularFireStorage) {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService.getUserById(status.uid).valueChanges().subscribe(
@@ -40,10 +40,10 @@ export class ProfileComponent implements OnInit {
     if (this.croppedImage) {
       const currentPictureId = Date.now();
       const pictures =
-      this.firebaseStorage.ref(`pictures/${currentPictureId}.jpg`).putString(this.croppedImage, 'data_url')
+      this.angularFireStorage.ref(`pictures/${currentPictureId}.jpg`).putString(this.croppedImage, 'data_url')
       .then((result) => {
-        this.picture = this.firebaseStorage.ref(`pictures/${currentPictureId}/.jpg`).getDownloadURL();
-        this.picture.subscribe((p) => {
+        this.picture = this.angularFireStorage.ref(`pictures/${currentPictureId}/.jpg`).getDownloadURL()
+        .subscribe((p) => {
           this.userService.setAvatar(p, this.user.uid)
           .then(() => {
             alert('avatar subido correctamente');

@@ -24,6 +24,7 @@ export class ConversationComponent implements OnInit {
     private authenticationService: AuthenticationService) {
 
     this.friendId = this.activatedRoute.snapshot.params['uid'];
+    console.log(this.friendId);
     this.authenticationService.getStatus().subscribe(
       (session) => {
         this.userService.getUserById(session.uid).valueChanges().subscribe(
@@ -32,14 +33,13 @@ export class ConversationComponent implements OnInit {
             this.userService.getUserById(this.friendId).valueChanges().subscribe(
               (data: User) => {
                 this.friend = data;
+                const ids = [this.user.uid, this.friend.uid].sort();
+                this.conversation_id = ids.join('|');
+                this.getConversation();
               },
-              (err) => {
-                console.error(err);
-              }
+              (err) => { console.error(err); }
             );
           });
-          const ids = [this.user.uid, this.friend.uid].sort();
-          this.conversation_id = ids.join('|');
       },
       (error) => console.error(error));
   }
@@ -55,9 +55,15 @@ export class ConversationComponent implements OnInit {
     };
 
     this.conversationService.createConversation(message)
-    .then(() => {
-      this.textMessage = '';
-    });
+      .then(() => {
+        this.textMessage = '';
+      });
   }
-
+  getConversation() {
+    this.conversationService.getConversation(this.conversation_id).valueChanges()
+    .subscribe(
+      (data) => { console.log(data); },
+      (error) => { console.error(error); }
+    );
+  }
 }
