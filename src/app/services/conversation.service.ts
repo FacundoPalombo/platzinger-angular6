@@ -13,6 +13,11 @@ export class ConversationService {
     .set(conversation);
   }
   getConversation(uid) {
-    return this.angularFireDatabase.list(`conversation/${uid}`);
+    return this.angularFireDatabase.list(`conversations/${uid}`);
+  }
+  editConversation(conversation) {
+    return this.angularFireDatabase
+    .object(`conversations/${conversation.uid}/${conversation.timestamp}`)
+    .set(conversation);
   }
 }
