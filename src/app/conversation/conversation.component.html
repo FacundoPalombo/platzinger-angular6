@@ -22,7 +22,14 @@
                     <span>{{m.text}}</span>
                 </div>
                 <div *ngIf="m.type==='shaker'">
-                  <b>{{getUserNickById(m.sender)}} ha enviado un zumbido! <img class="iconImage" src="/assets/img/zumbido.png"></b>
+                  <b>¡{{getUserNickById(m.sender)}} ha enviado un zumbido! <img class="iconImage" src="/assets/img/zumbido.png"></b>
+                </div>
+                <div *ngIf="m.type === 'image'" class="image">
+                  <b>{{getUserNickById(m.sender)}} Ha enviado una imagen: </b> <br>
+                  <a href=""><img src="{{imageDownloadUrl | async}}"></a>
+                  <div class="modal">
+                    <a href=""><img src="{{imageDownloadUrl | async}}"></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -37,7 +44,7 @@
                 <img src="/assets/img/zumbido.png" class="iconImage img-fluid" (click)="sendShaker()">
 
                 <label class="customFileUpload">
-                  <input type="file">
+                  <input type="file" (change)="sendImage($event)">
                   <i class="far fa-images"></i>
                   Seleccionar Imagen
                 </label>

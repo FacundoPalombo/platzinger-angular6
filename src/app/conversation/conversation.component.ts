@@ -1,10 +1,11 @@
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { ConversationService } from '../services/conversation.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-conversation',
@@ -20,12 +21,13 @@ export class ConversationComponent implements OnInit {
   conversation_id: string;
   conversation: any[];
   shaker = false;
-  image: any;
+  imageDownloadUrl: Observable <string | null>;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private conversationService: ConversationService,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private angularFireStorage: AngularFireStorage) {
 
     this.friendId = this.activatedRoute.snapshot.params['uid'];
     console.log(this.friendId);
@@ -49,20 +51,30 @@ export class ConversationComponent implements OnInit {
   }
   ngOnInit() {
   }
-  sendImage(img) {
+  sendImage(event) {
+    const file = event.target.files[0];
     const message = {
       uid: this.conversation_id,
       timestamp: Date.now(),
-      text: img,
+      text: file,
       sender: this.user.uid,
       seen: false,
       receiver: this.friend.uid,
       type: 'image'
     };
-    this.conversationService.createConversation(message)
-    .then(() => {
-      this.image = '';
-    });
+
+    const filePath = `sended/images/${message.timestamp}`;
+    const ref = this.angularFireStorage.ref(filePath);
+    const task = ref.put(file)
+      .then(() => {
+        this.conversationService.createConversation(message)
+          .then(() => {
+            this.imageDownloadUrl = this.angularFireStorage.ref(filePath).getDownloadURL();
+            console.log(`The image was uploaded ${event}`);
+          });
+        this.conversationService.editConversation(message);
+      })
+      .catch((err) => { console.error(err); });
   }
   sendMessage() {
     const message = {
@@ -112,11 +124,14 @@ export class ConversationComponent implements OnInit {
           this.conversation.forEach((message) => {
             console.log(message.seen);
             if (!message.seen) {
+              const audio = new Audio('assets/sound/new_message.m4a');
               message.seen = true;
               this.conversationService.editConversation(message);
               if (message.type === 'text') {
-              const audio = new Audio('assets/sound/new_message.m4a');
-              audio.play();
+                audio.play();
+              }
+              if (message.type === 'image') {
+                audio.play();
               }
             }
             console.log(data);
