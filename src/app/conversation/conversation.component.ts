@@ -21,7 +21,7 @@ export class ConversationComponent implements OnInit {
   conversation_id: string;
   conversation: any[];
   shaker = false;
-  imageDownloadUrl: Observable <string | null>;
+  imageDownloadUrl: Observable <string>;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -60,19 +60,25 @@ export class ConversationComponent implements OnInit {
       sender: this.user.uid,
       seen: false,
       receiver: this.friend.uid,
-      type: 'image'
+      type: 'image',
+      downloadUrl: ''
     };
 
     const filePath = `sended/images/${message.timestamp}`;
     const ref = this.angularFireStorage.ref(filePath);
-    const task = ref.put(file)
+    ref.put(file)
       .then(() => {
         this.conversationService.createConversation(message)
           .then(() => {
-            this.imageDownloadUrl = this.angularFireStorage.ref(filePath).getDownloadURL();
+            this.angularFireStorage.ref(filePath).getDownloadURL().subscribe((data) => {
+              message.downloadUrl = data;
+              this.conversationService.updateConversation(message);
+            },
+              (err) => {
+                console.error(err);
+              });
             console.log(`The image was uploaded ${event}`);
           });
-        this.conversationService.editConversation(message);
       })
       .catch((err) => { console.error(err); });
   }

@@ -20,4 +20,9 @@ export class ConversationService {
     .object(`conversations/${conversation.uid}/${conversation.timestamp}`)
     .set(conversation);
   }
+  updateConversation(conversation) {
+    return this.angularFireDatabase
+    .object(`conversations/${conversation.uid}/${conversation.timestamp}`)
+    .update(conversation);
+  }
 }

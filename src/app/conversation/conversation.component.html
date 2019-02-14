@@ -26,9 +26,9 @@
                 </div>
                 <div *ngIf="m.type === 'image'" class="image">
                   <b>{{getUserNickById(m.sender)}} Ha enviado una imagen: </b> <br>
-                  <a href=""><img src="{{imageDownloadUrl | async}}"></a>
+                  <a href=""><img src="{{m.downloadUrl}}"></a>
                   <div class="modal">
-                    <a href=""><img src="{{imageDownloadUrl | async}}"></a>
+                    <a href=""><img src="{{m.downloadUrl}}"></a>
                   </div>
                 </div>
               </div>
