@@ -20,8 +20,11 @@ export class ConversationComponent implements OnInit {
   textMessage: string;
   conversation_id: string;
   conversation: any[];
+<<<<<<< HEAD
   shaker = false;
   imageDownloadUrl: Observable <string>;
+=======
+>>>>>>> origin/dev-frontend
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -124,6 +127,7 @@ export class ConversationComponent implements OnInit {
   }
   getConversation() {
     this.conversationService.getConversation(this.conversation_id).valueChanges()
+<<<<<<< HEAD
       .subscribe(
         (data) => {
           this.conversation = data;
@@ -152,5 +156,14 @@ export class ConversationComponent implements OnInit {
     } else {
       return this.user.nick;
     }
+=======
+    .subscribe(
+      (data) => {
+        console.log(data);
+        this.conversation = data;
+      },
+      (error) => { console.error(error); }
+    );
+>>>>>>> origin/dev-frontend
   }
 }
