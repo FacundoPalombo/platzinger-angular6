@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./conversation.component.css']
 })
 export class ConversationComponent implements OnInit {
+  styleClass = true;
   friendId: any;
   friends: User[];
   friend: User;

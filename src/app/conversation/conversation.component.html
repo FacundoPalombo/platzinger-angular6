@@ -17,22 +17,25 @@
           <div class="container">
             <div class="chatContainer marto15">
               <div class="messageGroup" *ngFor="let m of conversation">
+                <!-- |||Text Sender|||  -->
                 <div *ngIf="m.type==='text'">
-                    <b>{{getUserNickById(m.sender)}}</b> dice: <br>
-                    <span>{{m.text}}</span>
+                  <b>{{getUserNickById(m.sender)}}</b> dice: <br>
+                  <span>{{m.text}}</span>
                 </div>
+                <!-- |||Shaker Sender|||  -->
                 <div *ngIf="m.type==='shaker'">
-                  <b>¡{{getUserNickById(m.sender)}} ha enviado un zumbido! <img class="iconImage" src="/assets/img/zumbido.png"></b>
+                  <b>¡{{getUserNickById(m.sender)}} ha enviado un zumbido! <img class="iconImage"
+                      src="/assets/img/zumbido.png"></b>
                 </div>
+                <!-- |||Image Sender|||  -->
                 <div *ngIf="m.type === 'image'" class="image">
                   <b>{{getUserNickById(m.sender)}} Ha enviado una imagen: </b> <br>
-                  <a href=""><img src="{{m.downloadUrl}}"></a>
-                  <div class="modal">
-                    <a href=""><img src="{{m.downloadUrl}}"></a>
-                  </div>
+                    <img [ngClass]="{'minimized-image': styleClass, 'maximized-image': !styleClass }" (click)="styleClass = !styleClass" src="{{m.downloadUrl}}">
                 </div>
               </div>
             </div>
+
+            <!-- |||Text Area|||  -->
             <div class="bottomChat">
               <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control areaChat"
                 placeholder="Escribe un mensaje" cols="30" rows="10"></textarea>
@@ -50,7 +53,6 @@
                 </label>
               </div>
             </div>
-
           </div>
         </div>
       </div>
