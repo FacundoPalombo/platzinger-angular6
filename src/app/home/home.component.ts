@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
       status: 'pending'
     };
     this.friendRequestService.createFriendRequest(friendRequest)
-    .then((result) => { alert('Solicitud Enviada.'); })
+    .then(() => { alert('Solicitud Enviada.'); })
     .catch((err) => { console.error(err); });
   }
   closeModal() {

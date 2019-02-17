@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
@@ -14,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   imageChangedEvent: any = '';
   croppedImage: any = '';
-  picture: any;
+  pictureUrl: Observable <string | any>;
   constructor(private userService: UserService,
     private authenticationService: AuthenticationService,
     private angularFireStorage: AngularFireStorage) {
@@ -40,18 +41,16 @@ export class ProfileComponent implements OnInit {
     if (this.croppedImage) {
       const currentPictureId = Date.now();
       const pictures =
+      // Picture uploader
       this.angularFireStorage.ref(`pictures/${currentPictureId}.jpg`).putString(this.croppedImage, 'data_url')
       .then((result) => {
-        this.picture = this.angularFireStorage.ref(`pictures/${currentPictureId}/.jpg`).getDownloadURL()
-        .subscribe((p) => {
-          this.userService.setAvatar(p, this.user.uid)
+        this.angularFireStorage.ref(`pictures/${currentPictureId}.jpg`).getDownloadURL()
+        .subscribe((picture) => {
+          this.pictureUrl = picture;
+          this.userService.setAvatar(this.pictureUrl, this.user)
           .then(() => {
-            alert('avatar subido correctamente');
-          })
-          .catch((err) => {
-            console.log('Error al subir la imagen');
-            console.error(err);
-          });
+          console.log(`Avatar subido exitosamente.`);
+        });
         });
         console.log(result);
       })
@@ -88,9 +87,9 @@ export class ProfileComponent implements OnInit {
     this.croppedImage = event.base64;
   }
   imageLoaded() {
-    // show cropper
+    console.log('Image loaded succesfully');
   }
   loadImageFailed() {
-    // show message
+   alert(`Failed to load image`);
   }
 }

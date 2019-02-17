@@ -19,11 +19,11 @@ export class UserService {
   editUser(user) {
     return this.angularFireDatabase.object(`/users/${user.uid}`).update(user);
   }
-  setAvatar(avatar, uid) {
-    return this.angularFireDatabase.object(`/users/${uid}/avatar`).set(avatar);
+  setAvatar(avatarUrl, user: User) {
+    return this.angularFireDatabase.object(`/users/${user.uid}/avatar/`).set(avatarUrl);
   }
   addFriend(userId, friendUid) {
-     this.angularFireDatabase.object(`/users/${userId}/friends/${friendUid}/`).set(friendUid);
-     this.angularFireDatabase.object(`/users/${friendUid}/friends/${userId}/`).set(userId);
+      this.angularFireDatabase.object(`/users/${userId}/friends/${friendUid}/`).set(friendUid);
+      this.angularFireDatabase.object(`/users/${friendUid}/friends/${userId}/`).set(userId);
   }
 }
