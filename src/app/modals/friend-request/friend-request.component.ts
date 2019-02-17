@@ -38,7 +38,7 @@ export class FriendRequestComponent extends DialogComponent<PromptModel, any> im
       this.friendRequestService.setFriendRequestStatus(this.currentRequest, 'accepted')
         .then((data) => {
           console.log(data);
-          this.userService.addFriend(this.scope.user.uid, this.currentRequest.sender.uid);
+          this.userService.addFriend(this.scope.user.uid, this.currentRequest.sender);
         })
         .catch((error) => console.error(error));
     } else if (this.shouldAdd == 'no') {

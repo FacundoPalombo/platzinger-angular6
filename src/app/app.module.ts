@@ -22,6 +22,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { FriendRequestComponent } from './modals/friend-request/friend-request.component';
+import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     NavigationComponent,
     SearchPipe,
-    FriendRequestComponent
+    FriendRequestComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

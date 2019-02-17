@@ -24,10 +24,16 @@ export class HomeComponent implements OnInit {
     private friendRequestService: FriendRequestService) {
     this.authenticationService.getStatus().subscribe((status) => {
       this.userService.getUserById(status.uid).valueChanges()
-      .subscribe((data: User) => this.user = data);
+        .subscribe((data: User) => {
+          this.user = data;
+          if (this.user.friends) {
+            this.user.friends = Object.values(this.user.friends);
+            console.log(this.user.friends);
+          }
+        });
     });
     this.userService.getUsers().valueChanges().subscribe(
-      (data: User[]) => this.friends = data ,
+      (data: User[]) => this.friends = data,
       (err) => console.error(err));
   }
   logout() {
@@ -41,7 +47,7 @@ export class HomeComponent implements OnInit {
       });
   }
   openModal(content) {
-    this.ngbModal.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.ngbModal.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
   sendFriendRequest() {
     const friendRequest = {
@@ -51,8 +57,8 @@ export class HomeComponent implements OnInit {
       status: 'pending'
     };
     this.friendRequestService.createFriendRequest(friendRequest)
-    .then(() => { alert('Solicitud Enviada.'); })
-    .catch((err) => { console.error(err); });
+      .then(() => { alert('Solicitud Enviada.'); })
+      .catch((err) => { console.error(err); });
   }
   closeModal() {
     this.ngbModal.dismissAll();
