@@ -1,8 +1,10 @@
+import { FriendRequestService } from './../services/friend-request.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,22 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   friends: User[];
-  query: string = '';
+  query = '';
+  friendEmail = '';
+  user: User;
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private ngbModal: NgbModal,
+    private friendRequestService: FriendRequestService) {
+    this.authenticationService.getStatus().subscribe((status) => {
+      this.userService.getUserById(status.uid).valueChanges()
+      .subscribe((data: User) => this.user = data);
+    });
     this.userService.getUsers().valueChanges().subscribe(
-      (data: User[]) => { this.friends = data; },
-      (err) => { console.error(err); });
+      (data: User[]) => this.friends = data ,
+      (err) => console.error(err));
   }
   logout() {
     this.authenticationService.logOut()
@@ -30,7 +40,23 @@ export class HomeComponent implements OnInit {
         console.error(error);
       });
   }
-
+  openModal(content) {
+    this.ngbModal.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+  sendFriendRequest() {
+    const friendRequest = {
+      timestamp: Date.now(),
+      receiverEmail: this.friendEmail,
+      sender: this.user.uid,
+      status: 'pending'
+    };
+    this.friendRequestService.createFriendRequest(friendRequest)
+    .then((result) => { alert('Solicitud Enviada.'); })
+    .catch((err) => { console.error(err); });
+  }
+  closeModal() {
+    this.ngbModal.dismissAll();
+  }
   ngOnInit() {
   }
 
