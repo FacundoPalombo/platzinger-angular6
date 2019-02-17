@@ -19,6 +19,7 @@ export class FriendRequestComponent extends DialogComponent<PromptModel, any> im
   currentRequest: any;
   shouldAdd = 'yes';
   friend: User;
+  message: string;
   constructor(
     public dialogService: DialogService,
     private userService: UserService,
@@ -31,6 +32,7 @@ export class FriendRequestComponent extends DialogComponent<PromptModel, any> im
       this.userService.getUserById(this.currentRequest.sender).valueChanges().subscribe((friend: User) => {
         this.friend = friend;
       }, (err) => console.error(err));
+      this.message = this.currentRequest.messageFriendRequest;
     }
   }
   accept() {
@@ -50,5 +52,8 @@ export class FriendRequestComponent extends DialogComponent<PromptModel, any> im
         .then((data) => console.log(data))
         .catch((error) => console.error(error));
     }
+  }
+  getMessage(): string {
+    return this.message;
   }
 }

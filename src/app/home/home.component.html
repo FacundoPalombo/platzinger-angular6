@@ -37,6 +37,9 @@
     </div>
     <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>
   </div>
+
+  <!--Modal addFriend-->
+
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-title">Agregar amigo</h4>
@@ -45,8 +48,10 @@
       </button>
     </div>
     <div class="modal-body">
-      <b>Ingresa el e-mail de tu amigo.</b>
+      <label><b>Ingresa el e-mail de tu amigo.</b></label>
       <input type="text" class="form-control" placeholder="e-mail" [(ngModel)]="friendEmail" (keyup.enter)="sendFriendRequest()">
+      <label>¡Agregale un mensaje personal!</label>
+      <input type="text" class="form-control" placeholder="Mensaje" [(ngModel)]="messageFriendRequest" (keyup.enter)="sendFriendRequest()">
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary" (click)="sendFriendRequest()">Send</button>

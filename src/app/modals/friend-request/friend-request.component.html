@@ -10,6 +10,8 @@
           <img [src]="friend.avatar || '/assets/img/generic_avatar.png'" class="img-fluid">
         </div>
         <div class="col-md-9">
+          <!-- Aca va el msj personal-->
+          <label>{{getMessage()}}</label>
           <b> {{friend.nick}} </b>
           <small>{{friend.email}}</small>
           <small>Te ha enviado solicitud de amistad</small>

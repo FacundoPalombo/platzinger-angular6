@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   friends: User[];
   query = '';
   friendEmail = '';
+  messageFriendRequest = '';
   user: User;
   constructor(
     private userService: UserService,
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
     const friendRequest = {
       timestamp: Date.now(),
       receiverEmail: this.friendEmail,
+      messageFriendRequest: this.messageFriendRequest,
       sender: this.user.uid,
       status: 'pending'
     };

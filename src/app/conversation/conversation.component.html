@@ -4,11 +4,11 @@
       <div class="row">
         <div class="col-xs-3 bg-grey marle-25">
           <div class="avatarFrameOnline ">
-            <img src="assets/img/generic_avatar.png" class=" homeAvatarPicture img-fluid">
+            <img [src]="friend.avatar|| 'assets/img/generic_avatar.png'" class=" homeAvatarPicture img-fluid">
           </div>
 
           <div class="avatarFrameOnline  marto250">
-            <img src="assets/img/generic_avatar.png" class=" homeAvatarPicture img-fluid">
+            <img [src]="user.avatar|| 'assets/img/generic_avatar.png'" class=" homeAvatarPicture img-fluid">
           </div>
 
         </div>
