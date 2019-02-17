@@ -34,19 +34,9 @@
   <span *ngIf="user && user.friends"><b>Amigos ({{user.friends.length}} / {{user.friends.length}})</b></span>
   <div *ngIf="user && user.friends">
     <div class="d-block" *ngFor="let user of user.friends | search: query; let i = index;">
-      <div>{{user}} </div>
     </div>
-
-    <!--
-      <a routerLink="/conversation/{{user.uid}}">
-      <img *ngIf="user.status != undefined" id="userStatus" src="../../assets/img/logo_live_{{user.status}}.png" alt="{{user.status}}">
-      <img *ngIf="user.status == undefined" id="userStatus" src="../../assets/img/logo_live_offline.png" alt="Offline"> {{i}}.
-      {{user.nick}} - {{user.subnick || user.status}} - <small>{{user.email}}</small>
-    </a>
+    <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>
   </div>
-    -->
-  </div>
-
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-title">Agregar amigo</h4>

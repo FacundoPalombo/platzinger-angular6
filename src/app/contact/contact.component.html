@@ -1,3 +1,9 @@
-<p>
-  contact works!
-</p>
+<div *ngIf="contact" routerLink="/conversation/{{contact.uid}}">
+  <img *ngIf="contact.status !== undefined" id="userStatus" 
+  src="../../assets/img/logo_live_{{contact.status}}.png" 
+  alt="{{contact.status}}">
+  <img *ngIf="contact.status == undefined" id="userStatus" 
+  src="../../assets/img/logo_live_offline.png" 
+  alt="{{contact.status}}">
+  <label>{{contact.nick}} - {{contact.subnick || contact.status}} - <small>{{contact.email}}</small> </label>
+</div>

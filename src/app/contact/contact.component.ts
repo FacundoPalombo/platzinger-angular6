@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  @Input() uid: string;
+  contact: User;
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    console.log(this.uid);
+    this.userService.getUserById(this.uid).valueChanges().subscribe(
+      (data: User) => this.contact = data,
+      (err) => console.error(err)
+    );
   }
 
 }
